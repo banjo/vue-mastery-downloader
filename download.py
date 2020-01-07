@@ -5,6 +5,7 @@ with open("urls.txt") as f:
   content = f.read()
 
 all_links = content.split(",")
+print(all_links[0])
 
 class MyLogger(object):
     def debug(self, msg):
@@ -32,4 +33,4 @@ ydl_opts = {
 }
 
 with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-  ydl.download(all_links[0])
+  ydl.download([all_links[0]])

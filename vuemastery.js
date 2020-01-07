@@ -5,7 +5,6 @@ const clipboardy = require('clipboardy');
 (async () => {
   const browser = await puppeteer.launch({ headless: false, args: [ '--no-sandbox' ] });
   const page = await browser.newPage();
-  await page.setViewport({ width: 1920, height: 926 });
 
   const urls = [];
   page.on('response', (res) => {
@@ -24,7 +23,6 @@ const clipboardy = require('clipboardy');
   });
 
   await page.goto('https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance');
-
 
   // await browser.close();
 })();
