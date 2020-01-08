@@ -6,6 +6,8 @@ const fs = require('fs');
     const page = await browser.newPage();
 
     const urls = [];
+
+    // read all responses
     page.on('response', (res) => {
         let url = res.url();
 
@@ -23,7 +25,5 @@ const fs = require('fs');
         }
     });
 
-    await page.goto('https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance');
-
-    // await browser.close();
+    await page.goto('https://www.vuemastery.com/');
 })();
