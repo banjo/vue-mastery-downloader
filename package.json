@@ -1,16 +1,17 @@
 {
-  "name": "vue-mastery-download",
-  "version": "1.0.0",
-  "description": "",
-  "main": "vuemastery.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node vuemastery.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "clipboardy": "^2.1.0",
-    "puppeteer": "^2.0.0"
-  }
+    "name": "vue-mastery-download",
+    "version": "1.0.0",
+    "description": "Download Vue Mastery videos for offline use.",
+    "main": "vuemastery.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node vuemastery.js",
+        "download": "python download.py",
+        "download3": "python3 download.py"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "puppeteer": "^2.0.0"
+    }
 }

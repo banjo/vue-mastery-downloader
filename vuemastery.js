@@ -1,28 +1,29 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
-const clipboardy = require('clipboardy');
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: false, args: [ '--no-sandbox' ] });
-  const page = await browser.newPage();
+    const browser = await puppeteer.launch({ headless: false, args: [ '--no-sandbox' ] });
+    const page = await browser.newPage();
 
-  const urls = [];
-  page.on('response', (res) => {
-    let url = res.url();
-    if (url.includes('player.vimeo')) {
-      console.log(res.url());
-      urls.push(res.url());
+    const urls = [];
+    page.on('response', (res) => {
+        let url = res.url();
 
-      // save file
-      fs.writeFileSync('urls.txt', urls, (err) => {
-        if (err) {
-          console.log(err);
+        // find correct url for scraping
+        if (url.includes('player.vimeo')) {
+            console.log('Found video!');
+            urls.push(res.url());
+
+            // save file
+            fs.writeFileSync('urls.csv', urls, (err) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
         }
-      });
-    }
-  });
+    });
 
-  await page.goto('https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance');
+    await page.goto('https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance');
 
-  // await browser.close();
+    // await browser.close();
 })();
