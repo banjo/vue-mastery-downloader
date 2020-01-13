@@ -8,16 +8,16 @@ const fs = require('fs');
     const urls = [];
 
     // read all responses
-    page.on('response', (res) => {
+    page.on('response', async (res) => {
         let url = res.url();
 
         // find correct url for scraping
         if (url.includes('player.vimeo')) {
             console.log('Found video!');
-            urls.push(res.url());
+            await urls.push(res.url());
 
             // save file
-            fs.writeFileSync('urls.csv', urls, (err) => {
+            fs.writeFile('urls.csv', urls, (err) => {
                 if (err) {
                     console.log(err);
                 }
