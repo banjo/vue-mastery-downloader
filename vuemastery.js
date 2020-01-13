@@ -5,7 +5,7 @@ const fs = require('fs');
     const browser = await puppeteer.launch({ headless: false, args: [ '--no-sandbox' ] });
     const page = await browser.newPage();
 
-    const urls = [];
+    let urls = [];
 
     // read all responses
     page.on('response', async (res) => {
@@ -33,6 +33,7 @@ const fs = require('fs');
         if (url.includes('vklass')) {
             if (fs.existsSync('urls.csv')) {
                 fs.unlinkSync('urls.csv');
+                urls = [];
                 console.log('Reseted list!');
                 console.log('');
             }
