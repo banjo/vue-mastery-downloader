@@ -13,15 +13,29 @@ const fs = require('fs');
 
         // find correct url for scraping
         if (url.includes('player.vimeo')) {
-            console.log('Found video!');
-            await urls.push(res.url());
+            await urls.push(url);
+            console.log(`${urls.length}: found video!`);
 
             // save file
-            fs.writeFile('urls.csv', urls, (err) => {
+            await fs.writeFile('urls.csv', urls, (err) => {
+                // print space
+                console.log('Added to file!');
+                console.log('');
+
+                // handle error
                 if (err) {
-                    console.log(err);
+                    console.log('Something went wrong: ', err);
                 }
             });
+        }
+
+        // reset list by going to vklass.se
+        if (url.includes('vklass')) {
+            if (fs.existsSync('urls.csv')) {
+                fs.unlinkSync('urls.csv');
+                console.log('Reseted list!');
+                console.log('');
+            }
         }
     });
 
